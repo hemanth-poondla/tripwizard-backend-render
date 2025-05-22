@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { OpenAI } = require('openai');
+const { OpenAI } = require("openai");
 
 const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
-  baseURL: "https://openrouter.ai/api/v1"
+  baseURL: "https://openrouter.ai/api/v1",
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const { prompt } = req.body;
   if (!prompt) return res.status(400).json({ error: "Prompt is required" });
 
@@ -22,22 +22,28 @@ router.post('/', async (req, res) => {
 - startDate, endDate
 - days: [ { day, date, title, activities[], expenses{}, groupSplitOptions[], blogNotes } ]
 - totalExpenses: {}
-Return ONLY valid JSON.`
+Return ONLY valid JSON.`,
         },
         {
           role: "user",
-          content: prompt
-        }
+          content: prompt,
+        },
       ],
-      temperature: 0.7
+      temperature: 0.7,
     });
 
     const text = response.choices[0].message.content;
     const json = JSON.parse(text);
     res.json(json);
   } catch (err) {
-    console.error("Error from OpenRouter:", err.message);
-    res.status(500).json({ error: "Failed to generate itinerary" });
+    console.error(
+      "🔥 OpenRouter Error:",
+      err.response?.data || err.message || err
+    );
+    res.status(500).json({
+      error: "Failed to generate itinerary",
+      details: err.response?.data || err.message || "Unknown error",
+    });
   }
 });
 
