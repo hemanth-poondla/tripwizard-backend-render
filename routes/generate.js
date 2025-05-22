@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
 
   try {
     const response = await openai.chat.completions.create({
-      model: "mistralai/mixtral-8x7b",
+      model: "openai/gpt-3.5-turbo",
       messages: [
         {
           role: "system",
