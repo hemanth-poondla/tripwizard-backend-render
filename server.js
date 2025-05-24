@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const generateRoute = require('./routes/generate');
-const allowedOrigins = ['http://localhost:3000', 'https://trip-wizard1.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://tripwizard-mlevcq1qd-hemanths-projects-1180f26d.vercel.app'];
 
 const app = express();
 app.use(cors({
