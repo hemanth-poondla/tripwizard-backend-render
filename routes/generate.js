@@ -56,7 +56,8 @@ router.post("/", async (req, res) => {
                             "activities": 0
                           },
                           "groupSplitOptions": ["...", "..."],
-                          "blogNotes": "..."
+                          "blogNotes": "...",
+                          "excitementLevel": 0  // Rate how exciting this day is from 1 to 10 based on activities and vibe.
                         }
                       ],
                       "totalExpenses": {
