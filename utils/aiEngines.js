@@ -2,6 +2,11 @@ const { OpenAI } = require("openai");
 
 // GPT via OpenRouter
 const callGPT = async (messages) => {
+  console.log("🧪 ENV Loaded Key (OpenRouter):", process.env.OPENROUTER_API_KEY);
+  if (!process.env.OPENROUTER_API_KEY) {
+  console.error("❌ KEY IS MISSING IN ENV");
+}
+
   const openai = new OpenAI({
     apiKey: process.env.OPENROUTER_API_KEY,
     baseURL: "https://openrouter.ai/api/v1",
@@ -17,6 +22,11 @@ const callGPT = async (messages) => {
 // Claude via OpenRouter
 const callClaude = async (messages) => {
   console.log("🚀 Claude function HIT ✅");
+  console.log("🧪 ENV Loaded Key (OpenRouter):", process.env.OPENROUTER_API_KEY);
+  if (!process.env.OPENROUTER_API_KEY) {
+  console.error("❌ KEY IS MISSING IN ENV");
+    }
+
   const openai = new OpenAI({
     apiKey: process.env.OPENROUTER_API_KEY,
     baseURL: "https://openrouter.ai/api/v1",
